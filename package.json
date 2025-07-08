@@ -1,0 +1,43 @@
+{
+  "name": "activitypub-auth",
+  "version": "1.0.0",
+  "description": "A production-ready ActivityPub-compatible authentication system built with vanilla JavaScript and Firebase",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . --listen 3000",
+    "build": "echo 'No build step required for static files'",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:firebase": "firebase deploy --only hosting",
+    "deploy:firestore": "firebase deploy --only firestore:rules",
+    "firebase:init": "firebase init",
+    "firebase:login": "firebase login"
+  },
+  "keywords": [
+    "activitypub",
+    "authentication",
+    "firebase",
+    "firestore",
+    "vanilla-javascript",
+    "tailwind",
+    "frontend",
+    "login",
+    "signup"
+  ],
+  "author": "ActivityPub Auth System",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/activitypub-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/activitypub-auth/issues"
+  },
+  "homepage": "https://github.com/your-username/activitypub-auth#readme"
+} 

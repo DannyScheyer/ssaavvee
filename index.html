@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ActivityPub Auth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fanwood+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Firebase Configuration (loaded from external file) -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { 
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc,
+            addDoc,
+            collection,
+            query,
+            where,
+            orderBy,
+            limit,
+            getDocs,
+            serverTimestamp,
+            onSnapshot
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        
+        // Firebase configuration is loaded from firebase-config.js
+        // This file is not committed to version control for security
+        const firebaseConfig = window.firebaseConfig;
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // Make Firebase services and functions globally available
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.signOut = signOut;
+        window.onAuthStateChanged = onAuthStateChanged;
+        window.doc = doc;
+        window.setDoc = setDoc;
+        window.getDoc = getDoc;
+        window.addDoc = addDoc;
+        window.collection = collection;
+        window.query = query;
+        window.where = where;
+        window.orderBy = orderBy;
+        window.limit = limit;
+        window.getDocs = getDocs;
+        window.serverTimestamp = serverTimestamp;
+        window.onSnapshot = onSnapshot;
+        
+        // Initialize the app after Firebase is ready
+        window.addEventListener('load', () => {
+            initializeAuthApp();
+        });
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Fanwood Text', 'serif'],
+                    },
+                    colors: {
+                        'custom-blue': '#c4d0e7',
+                        'custom-pink': '#f7e8e7', 
+                        'custom-green': '#e2e5ce',
+                        'custom-white': '#F0EEE9',
+                        'custom-grey': '#A7A099',
+                        'custom-black': '#282727'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+  <body class="font-serif bg-custom-blue min-h-screen">
+    <div id="app-container">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html> 
