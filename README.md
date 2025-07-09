@@ -111,19 +111,35 @@ ssaavvee/
 
 ## 🔧 Configuration
 
-### Firebase Setup
-Replace the configuration in `index.html`:
+### 🔐 Secure Firebase Setup
 
-```javascript
-const firebaseConfig = {
-    apiKey: "your-api-key",
-    authDomain: "your-project.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project.appspot.com",
-    messagingSenderId: "your-sender-id",
-    appId: "your-app-id"
-};
-```
+**IMPORTANT**: This project uses secure configuration management. Follow these steps:
+
+1. **Copy the template file**:
+   ```bash
+   cp firebase-config.example.js firebase-config.js
+   ```
+
+2. **Edit firebase-config.js** with your actual Firebase credentials:
+   - Go to [Firebase Console](https://console.firebase.google.com)
+   - Select your project → Project Settings → General Tab
+   - Scroll to "Your apps" section
+   - Copy your config object
+
+3. **Replace the template values** in `firebase-config.js`:
+   ```javascript
+   const firebaseConfig = {
+       apiKey: "your-actual-api-key",
+       authDomain: "your-project.firebaseapp.com",
+       projectId: "your-project-id",
+       storageBucket: "your-project.firebasestorage.app",
+       messagingSenderId: "your-sender-id",
+       appId: "your-app-id",
+       measurementId: "your-measurement-id"
+   };
+   ```
+
+4. **NEVER commit firebase-config.js** - it's in .gitignore for security
 
 ### Custom Colors
 The app uses a custom Tailwind configuration with:
@@ -152,11 +168,32 @@ npx firebase deploy --only hosting
 
 ## 🔒 Security Features
 
+### 🛡️ Authentication & Data Security
 - **Firebase Auth**: Industry-standard authentication
 - **Firestore Rules**: Users can only modify their own content
 - **XSS Protection**: All user content is properly escaped
 - **Secure Links**: External links use `noopener noreferrer`
 - **Session Security**: Automatic logout after 7 days
+
+### 🔐 Configuration Security
+- **External Config**: Firebase credentials stored in gitignored file
+- **Template System**: Example configuration for safe setup
+- **No Hardcoded Keys**: All sensitive data excluded from version control
+- **Force Push Protection**: Clean repository history without exposed keys
+
+### 🚨 If Your API Key Was Compromised
+If you accidentally committed API keys to version control:
+
+1. **Immediately regenerate your Firebase API key**:
+   - Go to [Firebase Console](https://console.firebase.google.com)
+   - Project Settings → General → Web API Key
+   - Regenerate the key
+
+2. **Update your local firebase-config.js** with the new key
+
+3. **Review Firebase Security Rules** to ensure no unauthorized access
+
+4. **Monitor your Firebase usage** for any suspicious activity
 
 ## 🤝 Contributing
 
